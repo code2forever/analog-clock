@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<style type="text/css">
+	*{
+		margin: auto;
+	}
+	body{
+		background-color: #202020;
+	}
+	.clock{
+		position:relative;
+		top:100px;
+		width:400px;
+		height:400px;
+		background-size: cover;
+		background-image:url("clock.png");
+		border-radius: 50%;
+		display:flex;
+		justify-content: center;
+		align-items: center;
+		box-shadow:0 0 20px 15px black inset,0 0 20px 15px #686868;
+		border:15px solid #101010;
+	}
+	.middle{
+		z-index:1;
+		background-color:red;
+		border-radius:50%;
+		position:relative;
+		left:-2px;
+		top:-121px;
+		width:1.1vmax;
+		height:1.1vmax;
+	}
+	.hour{
+		position: absolute;
+		top:314px;
+		left:50%;
+		background-color: white;
+		width:90px;
+		height:7px;
+		transform-origin:left; 
+	}
+
+	.min{
+		position: absolute;
+		top:314px;
+		left:50%;
+		background-color: coral;
+		width:120px;
+		height:5px;
+		transform-origin:left;
+	}
+
+	.sec{
+		position: absolute;
+		top:314px;
+		left:calc(50% - 40px);
+		background-color: powderblue;
+		width:180px;
+		height:2px;
+		transform-origin:40px ;
+	}   
+	</style>
+	<title></title>
+</head>
+<body>
+<div class="clock">
+</div>
+<div class="middle"></div>
+<div  class="hour"></div>
+<div class="min"></div>
+<div class="sec"></div>
+
+<script type="text/javascript">
+
+function timer(){
+	var d=new Date();
+	var h=d.getHours();
+	var m=d.getMinutes();
+	var s=d.getSeconds();
+	let hour=document.querySelector("div[class=hour]");
+	let min=document.querySelector("div[class=min]");
+	let sec=document.querySelector("div[class=sec]");
+	sec.style.transform=`rotateZ(${s*6-90}deg)`;    /*We are subtracting 90 to make it start rotating from 12 on clock*/
+	min.style.transform=`rotateZ(${m*6-90}deg)`;
+	hour.style.transform=`rotateZ(${h*30-90}deg)`;
+
+}
+setInterval(timer,1000);
+</script>
+
+</body>
+
+</html>

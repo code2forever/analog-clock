@@ -1,94 +1,164 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 	<style type="text/css">
-	*{
-		margin: auto;
-	}
-	body{
-		background-color: #202020;
-	}
-	.clock{
-		position:relative;
-		top:100px;
-		width:400px;
-		height:400px;
-		background-size: cover;
-		background-image:url("clock.png");
-		border-radius: 50%;
-		display:flex;
-		justify-content: center;
-		align-items: center;
-		box-shadow:0 0 20px 15px black inset,0 0 20px 15px #686868;
-		border:15px solid #101010;
-	}
-	.middle{
-		z-index:1;
-		background-color:red;
-		border-radius:50%;
-		position:relative;
-		left:-2px;
-		top:-121px;
-		width:1.1vmax;
-		height:1.1vmax;
-	}
-	.hour{
-		position: absolute;
-		top:314px;
-		left:50%;
-		background-color: white;
-		width:90px;
-		height:7px;
-		transform-origin:left; 
-	}
+		* {
+			padding: 0px;
+			margin: 0px;
+			box-sizing: border-box;
+		}
 
-	.min{
-		position: absolute;
-		top:314px;
-		left:50%;
-		background-color: coral;
-		width:120px;
-		height:5px;
-		transform-origin:left;
-	}
+		.container {
+			margin: 0px auto;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			text-align: center;
+			width: 100vw;
+			height: 100vh;
+			background-color:sandybrown;
+		}
 
-	.sec{
-		position: absolute;
-		top:314px;
-		left:calc(50% - 40px);
-		background-color: powderblue;
-		width:180px;
-		height:2px;
-		transform-origin:40px ;
-	}   
+		.clock {
+			z-index: 1;
+			flex-basis: 35vw;
+			height: 35vw;
+			background-color:rgb(12, 12, 58);
+			background-size: cover;
+			background-image: url("clock.png");
+			border-radius: 50%;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			border: 10px solid wheat;
+		}
+
+		.middle {
+			z-index: 2;
+			background-color: red;
+			border-radius: 50%;
+			position: absolute;
+			width: 1.1vw;
+			height: 1.1vw;
+		}
+
+		.hour {
+			z-index: 3;
+			position: absolute;
+			left: 50%;
+			background-color:  rgb(240, 180, 128);
+			width: 7vw;
+			height: 0.4vw;
+			transform-origin: left;
+		}
+
+		.min {
+			z-index: 3;
+			position: absolute;
+			left: 50%;
+			background-color:  rgb(240, 180, 128);
+			width: 8vw;
+			height: 0.25vw;
+			transform-origin: left;
+		}
+
+		.sec {
+			z-index: 3;
+			position: absolute;
+			left: calc(50% - 2.2vw);
+			background-color: rgb(240, 180, 128);
+			width: 13vw;
+			height: 0.15vw;
+			transform-origin: 2.2vw;
+		}
+
+		/* For iPads */
+		@media screen and (max-width:1024px) and (min-width:768px) {
+			.clock {
+				flex-basis: 50vw;
+				height: 50vw;
+			}
+
+			.middle {
+				width: 2vw;
+				height: 2vw;
+			}
+
+			.hour {
+				width: 10vw;
+				height: 0.5vw;
+			}
+
+			.min {
+				width: 11vw;
+				height: 0.35vw;
+			}
+
+			.sec {
+				width: 15vw;
+				height: 0.25vw;
+			}
+		}
+
+		/* For Smartphones */
+		@media screen and (max-width:480px) and (min-width:300px) {
+			.clock {
+				flex-basis: 60vw;
+				height: 60vw;
+			}
+
+			.middle {
+				width: 3vw;
+				height: 3vw;
+			}
+
+			.hour {
+				width: 13vw;
+				height: 0.6vw;
+			}
+
+			.min {
+				width: 14vw;
+				height: 0.45vw;
+			}
+
+			.sec {
+				width: 18vw;
+				height: 0.35vw;
+			}
+		}
 	</style>
-	<title></title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Analog-Clock</title>
 </head>
+
 <body>
-<div class="clock">
-</div>
-<div class="middle"></div>
-<div  class="hour"></div>
-<div class="min"></div>
-<div class="sec"></div>
+	<div class="container">
+		<div class="clock">
+		</div>
+		<div class="middle"></div>
+		<div class="hour"></div>
+		<div class="min"></div>
+		<div class="sec"></div>
+	</div>
+	<script type="text/javascript">
 
-<script type="text/javascript">
-
-function timer(){
-	var d=new Date();
-	var h=d.getHours();
-	var m=d.getMinutes();
-	var s=d.getSeconds();
-	let hour=document.querySelector("div[class=hour]");
-	let min=document.querySelector("div[class=min]");
-	let sec=document.querySelector("div[class=sec]");
-	sec.style.transform=`rotateZ(${s*6-90}deg)`;    /*We are subtracting 90 to make it start rotating from 12 on clock*/
-	min.style.transform=`rotateZ(${m*6-90}deg)`;
-	hour.style.transform=`rotateZ(${h*30-90}deg)`;
-
-}
-setInterval(timer,1000);
-</script>
+		function timer() {
+			var d = new Date();
+			var h = d.getHours();
+			var m = d.getMinutes();
+			var s = d.getSeconds();
+			let hour = document.querySelector("div[class=hour]");
+			let min = document.querySelector("div[class=min]");
+			let sec = document.querySelector("div[class=sec]");
+			sec.style.transform = `rotateZ(${s * 6 - 90}deg)`;    /*We are subtracting 90 to make it start rotating from 12 on clock*/
+			min.style.transform = `rotateZ(${m * 6 - 90}deg)`;
+			hour.style.transform = `rotateZ(${((h + (m / 60)) * 30 - 90)}deg)`; //we are adding minute to also take effect of minute on hour, because value of h is always integer so we cannot rotate hour needle between two integer numbers on clock
+		}
+		setInterval(timer, 1000);
+	</script>
 
 </body>
 
